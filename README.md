@@ -20,4 +20,39 @@ socket_abstract:
       ref: master
 # Usage:
     - Need to override init function
-    
+    - After override adding listen 
+    ```dart
+    void init(String token) {
+    socket = IO.io(BaseUrl.socketUrl + token, <String, dynamic>{
+      'transports': ['websocket'],
+    });
+
+    socket.on('connect', (_) {
+      this.logger('Connected');
+      changedSocketStatus(SocketStatus.Connected);
+    });
+    socket.on('disconnect', (_) {
+      this.logger('Disconnected');
+      changedSocketStatus(SocketStatus.Discounted);
+    });
+
+    socket.on('error', (data) {
+      changedSocketError(data);
+      this.logger(data);
+    });
+
+    socket.on('reconnecting', (_) {
+      this.logger('Reconnecting');
+      changedSocketStatus(SocketStatus.Reconnecting);
+    });
+    socket.on('connect_error', (_) {
+      this.logger('ConnectError');
+      changedSocketStatus(SocketStatus.ConnectError);
+    });
+    socket.on('reconnect_failed', (_) {
+      this.logger('ReconnectFailed');
+      changedSocketStatus(SocketStatus.ReconnectFailed);
+    });
+  }
+    ```
+
