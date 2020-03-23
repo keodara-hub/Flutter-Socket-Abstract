@@ -9,6 +9,8 @@ enum SocketStatus {
   Reconnecting,
   ConnectError,
   ReconnectFailed,
+  AlreadyLogin,
+  SessionError
 }
 
 abstract class SocketAbstract {

@@ -1,7 +1,7 @@
 name: socket_abstract
 description: A new Flutter package project.
-version: 0.0.1
-author:
+version: 0.0.2
+homepage: "https://ecoinsoft.com"
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
